@@ -224,6 +224,7 @@ struct ALU
 
     // Bit manipulations
     template<typename I, typename T> static void pack( I* instr)  { instr->v_dst = (instr->v_src1 & (bitmask<T>(half_bitwidth<T>))) | (instr->v_src2 << (half_bitwidth<T>)); }
+    template<typename I> static void shfl( I* instr) { instr->v_dst = gen_shfl(instr->v_src1, instr->v_src2); }
 
     // Branches
     template<typename I, Predicate<I> p> static
